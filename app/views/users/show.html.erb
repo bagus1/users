@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>roles:</strong>
+  <% @user.roles.each do |r|  %>
+  <br> <%= r.name %> 
+   <% end %>
+</p>
+
+<% if @user.has_role? :admin %>
+<p>Yep, they are admin</p>
+<%end%>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
