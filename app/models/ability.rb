@@ -1,15 +1,23 @@
 class Ability
   include CanCan::Ability
-
   def initialize(user)
     # Define abilities for the passed in user here. For example:
     #
-       user ||= User.new # guest user (not logged in)
-       if user.has_role? :admin
-         can :manage, :all
-       else
+      user ||= current_user # User.new # guest user (not logged in)
+      #abort user.inspect
+      if user.has_role? :admin
+        can :manage, :all
+      elsif user.has_role? :paver
+        can :create, Quiz
+        can :update, Quiz do |quiz| 
+            quiz[:user_id] == user.id
+         
+        end
+        can :read, :all
+      else
          can :read, :all
-       end
+         #can :update, Quiz
+      end
     #
     # The first argument to `can` is the action you are giving the user 
     # permission to do.

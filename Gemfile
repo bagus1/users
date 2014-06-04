@@ -48,8 +48,12 @@ end
 gem 'devise'
 
 #cancan
-gem 'cancan'
+gem 'cancancan'
 
 #rolify
 gem 'rolify'
+
+group :development, :test do
+	gem 'rspec-rails'
+end
 

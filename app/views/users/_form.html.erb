@@ -19,7 +19,7 @@
     <%= f.text_field :password %>
   </div>
 
-  <% if can? :update, @user %>
+  <% #if can? :update, @user %>
   <p>so here are the roles
     <% for role in Role.find(:all) %>
       <br>
@@ -27,7 +27,7 @@
       <%= role.name %>
     <% end %>
   </p>
- <% end %> 
+ <% #end %> 
   <div class="actions">
     <%= f.submit %>
   </div>

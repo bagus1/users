@@ -10,16 +10,18 @@ class User < ActiveRecord::Base
 	has_and_belongs_to_many :roles, :join_table => :users_roles
  	belongs_to :resource, :polymorphic => true
  
-
-
-	def has_role?(role_sym)
-		logger.info "booooooooooop " + role_sym.inspect
- 		Role.all.each do  |role| 
- 			logger.info role.inspect
- 			logger.info role.name.underscore.to_sym
- 			logger.info role_sym.downcase
- 			logger.info role.name.underscore.to_sym == role_sym.downcase 
- 			return role.name.underscore.to_sym == role_sym.downcase
+	def has_role?(role_sym) 
+		#set_roles_for_user
+		#challenge: write this all in one line.
+		#logger.info "booooooooooop " + role_sym.inspect
+		#abort(self[:id].to_s)
+		ur = Role.by_user_id(self[:id].to_s)
+		ur.each do |user_role|
+ 			logger.info user_role.inspect + " == " + role_sym.downcase.inspect
+	 		if user_role.to_sym == role_sym.downcase 
+	 			return true
+	 		end
  		end
+ 		return false
  	end
 end
