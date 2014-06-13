@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 	has_and_belongs_to_many :roles, :join_table => :users_roles
  	belongs_to :resource, :polymorphic => true
  
-	def has_role?(role_sym) 
+	def xhas_role?(role_sym) 
 		#set_roles_for_user
 		#challenge: write this all in one line.
 		#logger.info "booooooooooop " + role_sym.inspect
